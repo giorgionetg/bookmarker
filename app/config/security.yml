@@ -1,0 +1,28 @@
+security:
+    encoders:
+        KingFoo\BookmarkerBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 13
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        doctrine:
+            entity:
+                class: KingFooBookmarkerBundle:User
+                property: username
+
+    firewalls:
+        main:
+            pattern:    ^
+            anonymous: ~
+            form_login:
+                check_path: authenticate
+                login_path: login
+            logout:
+                path: logout
+
+    access_control:
+        - { path: ^/me($|/), roles: IS_AUTHENTICATED_FULLY }

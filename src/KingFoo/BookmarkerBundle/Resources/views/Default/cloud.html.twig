@@ -1,0 +1,10 @@
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    <h4>Your Tags</h4>
+{% else %}
+    <h4>All Tags</h4>
+{% endif %}
+<ul id="tag-cloud" class="list-inline">
+    {% for tag in tags %}
+        <li><a href="{{ path("bookmarker_tag", { tag: tag[0].label }) }}" class="label label-default">{{ tag[0].label }} ({{ tag.saveCount }})</a></li>
+    {% endfor %}
+</ul>

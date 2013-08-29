@@ -1,0 +1,23 @@
+{% extends "KingFooBookmarkerBundle::layout.html.twig" %}
+
+{% block header %}<h3>Bookmarks for user <strong>“{{ username }}”</strong></h3>{% endblock %}
+
+{% block content %}
+    <div class="list-group">
+        {% for bookmark in bookmarks %}
+            <div class="list-group-item">
+                <div class="clearfix">
+                    <h4 class="list-group-item-heading pull-left"><a href="{{ bookmark.url }}">{{ bookmark.url }}</a></h4>
+                    <p class="list-group-item-heading pull-right"><small class="text-muted">{{ bookmark.createdAt | date("j F Y, G:i") }}</small></p>
+                </div>
+                <p>{{ bookmark.description }}</p>
+                <p class="list-group-item-text">
+                    {% for tag in bookmark.tags %}
+                        <a href="{{ path("bookmarker_tag", { tag: tag }) }}" class="label label-primary">{{ tag }}</a>
+                    {% endfor %}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+    {{ include("KingFooBookmarkerBundle::pagination.html.twig", { route: "bookmarker_user", params: { username: username } }) }}
+{% endblock %}

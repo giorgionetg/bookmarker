@@ -1,0 +1,40 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Bookmarker{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet" media="screen">
+    <link href="{{ asset("css/bootstrap-theme.min.css") }}" rel="stylesheet" media="screen">
+    <style>
+        body { padding-top: 50px; }
+        #tag-cloud li { padding-left: 0; padding-right: 0; }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="{{ asset("js/bootstrap.min.js") }}"></script>
+{% endblock %}
+
+{% block body %}
+{{ include("KingFooBookmarkerBundle::navigation.html.twig") }}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            {% block header %}{% endblock %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            {% block sidebar %}
+                {{ render(controller('KingFooBookmarkerBundle:Default:cloud')) }}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% if totalPages > 1 %}
+    {% set firstPage = page - 4 %}
+    {% if firstPage < 1 %}{% set firstPage = 1 %}{% endif %}
+    {% set lastPage = firstPage + 8 %}
+    {% if lastPage > totalPages %}{% set lastPage = totalPages %}{% endif %}
+    <ul class="pagination">
+        {% if page > 1 %}
+            <li><a href="{{ path(route, params | default({}) | merge({ page: 1 })) }}">&laquo;&laquo;</a></li>
+            <li><a href="{{ path(route, params | default({}) | merge({ page: page - 1 })) }}">&laquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in firstPage..lastPage %}
+            {% if i != page %}
+                <li><a href="{{ path(route, params | default({}) | merge({ page: i })) }}">{{ i }}</a></li>
+            {% else %}
+                <li class="active"><span>{{ i }}</span></li>
+            {% endif %}
+        {% endfor %}
+        {% if page < totalPages %}
+            <li><a href="{{ path(route, params | default({}) | merge({ page: page + 1 })) }}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+{% endif %}

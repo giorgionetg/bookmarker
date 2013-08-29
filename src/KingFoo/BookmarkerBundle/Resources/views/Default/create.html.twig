@@ -1,0 +1,8 @@
+{% extends "KingFooBookmarkerBundle::layout.html.twig" %}
+
+{% block header %}<h3>Add a Bookmark</h3>{% endblock %}
+
+{% block content %}
+    {{ form_start(form, { attr: { novalidate: null } }) }}
+    {{ form_end(form) }}
+{% endblock %}

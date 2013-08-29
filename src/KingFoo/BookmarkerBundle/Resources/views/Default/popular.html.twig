@@ -1,0 +1,16 @@
+{% extends "KingFooBookmarkerBundle::layout.html.twig" %}
+
+{% block header %}<h3>What's Popular</h3>{% endblock %}
+
+{% block content %}
+    <div class="list-group">
+        {% for bookmark in bookmarks %}
+            <div class="list-group-item">
+                <div class="clearfix">
+                    <h4 class="list-group-item-heading pull-left"><a href="{{ bookmark[0].url }}">{{ bookmark[0].url }}</a></h4>
+                    <p class="list-group-item-text pull-right"><small class="text-muted">Saved by <span class="badge">{{ bookmark.saveCount }}</span> users in the past month</small></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

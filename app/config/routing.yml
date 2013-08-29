@@ -1,0 +1,4 @@
+king_foo_bookmarker:
+    resource: "@KingFooBookmarkerBundle/Controller/"
+    type:     annotation
+    prefix:   /
